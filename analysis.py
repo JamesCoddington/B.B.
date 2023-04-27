@@ -11,7 +11,7 @@ def analyze(messages):
     for message in messages:
         message_score = analyzer.polarity_scores(message)
         negative_score += message_score["neg"]
-    
+
     overall_negative_score = negative_score / len(messages)
 
-    return overall_negative_score
+    return round(overall_negative_score, 3)
