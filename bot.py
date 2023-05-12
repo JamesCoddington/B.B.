@@ -8,6 +8,7 @@ intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
 client = discord.Client(intents=intents)
 
+
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
@@ -16,6 +17,7 @@ async def on_message(message):
         if message.content.startswith('!check'):
             await check(message)
         await sweep(message)
+
 
 async def get_analysis_score(message):
     ctx = await bot.get_context(message)
@@ -31,22 +33,22 @@ async def get_analysis_score(message):
     analysis_score = analyze(user_messages)
     return analysis_score
 
+
 async def check(message):
     ctx = await bot.get_context(message)
     member = message.author
     analysis_score = await get_analysis_score(message)
     await ctx.send(f"{member} has an aggression score of {analysis_score}")
 
+
 async def sweep(message):
     ctx = await bot.get_context(message)
     member = message.author
     analysis_score = await get_analysis_score(message)
-    
+
     if (analysis_score > .3):
         await member.kick(reason="B.B. Activated")
         await ctx.send(f"{member} has been kicked for having an aggression score of {analysis_score}")
 
-    # await ctx.send(analyze(user_messages))
 
-
-bot.run('MTA5MTA1NzIyNjU1MjE4MDkwNg.GC3eN5.nGAbIMltIcObmu4wBu0F3CLahWoBkANWXynCdE')
+bot.run("REPLACE WITH PROVIDED TOKEN")
